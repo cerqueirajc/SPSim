@@ -1,0 +1,15 @@
+*********************************************
+* cell_component_py.lib 					*
+* Lib circuit for PV panel simulations  	*
+*********************************************
+
+.subckt cell_py 300 303 params: irrad=1000, i0=9.825e-8, iph=8.214, rs=0.221, rsh=415.405, a=1.3, ktq=0.025670412, ns=54
+
+girrad 300 301 value={(iph)*(irrad)/1000}
+d2 301 300 diode
+
+rs 301 303 {rs}
+rsh 301 300 {rsh}
+
+.model diode d(is=i0,n=a*ns,TNOM=25)
+.ends cell_py
